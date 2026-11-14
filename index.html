@@ -3,95 +3,991 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guerra Pixel Studio</title>
-    <meta name="description" content="Official website of Guerra Pixel Studio, indie game developer and creator of Mawkey The Last Macaw.">
+    <meta name="theme-color" content="#1B003D">
+    <meta name="description" content="Guerra Pixel Studio creates colourful pixel-art games inspired by Honduras, wildlife and the natural world.">
+    <meta property="og:title" content="Guerra Pixel Studio">
+    <meta property="og:description" content="Meet Mawkey The Last Macaw, a pixel-art adventure inspired by Honduras.">
+    <meta property="og:type" content="website">
+    <title>Guerra Pixel Studio | Independent Games</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --purple: #1B003D;
+            --purple-deep: #100024;
+            --purple-soft: #352050;
+            --pink: #FF4EA8;
+            --pink-dark: #E83D91;
+            --white: #FFFFFF;
+            --paper: #F8F6FB;
+            --ink: #211832;
+            --muted: #70677E;
+            --line: #E8E1EF;
+            --pixel-font: "Silkscreen", monospace;
+            --rail-width: 88px;
+            --topbar-height: 76px;
+            --content-width: 1380px;
+        }
+
+        * { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--topbar-height) + 16px);
+        }
+
         body {
             margin: 0;
+            color: var(--ink);
+            background: var(--paper);
             font-family: Arial, Helvetica, sans-serif;
-            background: #111318;
-            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; }
+        button { font: inherit; }
+
+        .brand-name,
+        .brand-caption,
+        .top-links a,
+        .top-action,
+        .rail-link,
+        .eyebrow,
+        .hero h1,
+        .hero h2,
+        .button,
+        .section-title,
+        .section-link,
+        .update-label,
+        .update-copy h3,
+        .game-card-copy h3,
+        .platforms span,
+        .contact-row h2,
+        .contact-email {
+            font-family: var(--pixel-font);
+        }
+
+        .skip-link {
+            position: fixed;
+            z-index: 100;
+            top: 8px;
+            left: 8px;
+            padding: 12px 16px;
+            color: var(--purple);
+            background: var(--white);
+            border-radius: 8px;
+            transform: translateY(-150%);
+        }
+
+        .skip-link:focus { transform: translateY(0); }
+
+        .topbar {
+            position: sticky;
+            z-index: 20;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--topbar-height);
+            padding: 0 30px 0 24px;
+            color: var(--white);
+            background: var(--purple);
+            box-shadow: 0 4px 18px rgb(16 0 36 / 18%);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 225px;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            color: var(--white);
+            background: var(--pink);
+            border: 2px solid rgb(255 255 255 / 90%);
+            border-radius: 11px;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            box-shadow: 3px 3px 0 rgb(0 0 0 / 22%);
+        }
+
+        .brand-name {
+            display: block;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: .01em;
+        }
+
+        .brand-caption {
+            display: block;
+            margin-top: 3px;
+            color: #E5D8F3;
+            font-size: 7px;
+            font-weight: 700;
+            letter-spacing: .04em;
+        }
+
+        .top-links {
+            display: flex;
+            align-items: center;
+            gap: clamp(18px, 3vw, 42px);
+            margin: 0 24px;
+        }
+
+        .top-links a {
+            color: #F7F1FC;
+            font-size: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color .18s ease;
+        }
+
+        .top-links a:hover,
+        .top-links a:focus-visible { color: #FFB6D9; }
+
+        .top-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 17px;
+            color: var(--purple);
+            background: var(--white);
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform .18s ease, background .18s ease;
+        }
+
+        .top-action:hover { background: #FFE7F3; transform: translateY(-1px); }
+        .top-action svg { width: 16px; height: 16px; }
+
+        .side-rail {
+            position: fixed;
+            z-index: 18;
+            top: var(--topbar-height);
+            bottom: 0;
+            left: 0;
+            display: flex;
+            width: var(--rail-width);
+            flex-direction: column;
+            background: var(--purple);
+            box-shadow: 5px 0 22px rgb(16 0 36 / 12%);
+        }
+
+        .rail-link {
+            display: flex;
+            min-height: 83px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 10px 4px;
+            color: #F3EAFB;
+            border-bottom: 1px solid rgb(255 255 255 / 13%);
+            font-size: 8px;
+            font-weight: 700;
+            line-height: 1.15;
             text-align: center;
+            text-decoration: none;
+            transition: color .18s ease, background .18s ease;
         }
 
-        main {
-            max-width: 850px;
+        .rail-link svg { width: 25px; height: 25px; }
+
+        .rail-link:hover,
+        .rail-link:focus-visible,
+        .rail-link[aria-current="location"] {
+            color: var(--white);
+            background: var(--pink);
+        }
+
+        main { margin-left: var(--rail-width); }
+
+        .hero-wrap {
+            position: relative;
+            overflow: hidden;
+            padding: 22px 22px 0;
+            background: var(--purple-deep);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            max-width: 1640px;
+            height: min(69vw, 650px);
+            min-height: 440px;
             margin: 0 auto;
-            padding: 80px 24px;
+            background: #221335;
+            border-radius: 9px;
+            box-shadow: 0 14px 50px rgb(0 0 0 / 30%);
         }
 
-        h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
+        .hero-track {
+            display: flex;
+            height: 100%;
+            transition: transform .55s cubic-bezier(.2,.75,.25,1);
         }
 
-        h2 {
-            margin-top: 50px;
+        .hero-slide {
+            position: relative;
+            min-width: 100%;
+            height: 100%;
+            overflow: hidden;
+            isolation: isolate;
+            color: var(--white);
         }
 
-        p {
-            color: #c8cbd1;
-            font-size: 18px;
-            line-height: 1.6;
+        .hero-slide::after {
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            background: linear-gradient(90deg, rgb(16 0 36 / 86%) 0%, rgb(16 0 36 / 65%) 34%, rgb(16 0 36 / 12%) 75%),
+                        linear-gradient(0deg, rgb(16 0 36 / 45%), transparent 42%);
+            content: "";
         }
 
-        a {
-            color: #59b8ff;
+        .hero-art {
+            position: absolute;
+            z-index: -2;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
-        .game {
-            margin-top: 40px;
-            padding: 30px;
-            background: #1b1e25;
-            border-radius: 14px;
+        .hero-content {
+            position: absolute;
+            right: 8%;
+            bottom: 13%;
+            left: 8%;
+            max-width: 590px;
         }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            color: #FFD1E7;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .17em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            display: inline-block;
+            width: 24px;
+            height: 3px;
+            background: var(--pink);
+            border-radius: 9px;
+            content: "";
+        }
+
+        .hero h1,
+        .hero h2 {
+            max-width: 660px;
+            margin: 0;
+            font-size: clamp(30px, 4.6vw, 60px);
+            font-weight: 900;
+            letter-spacing: 0;
+            line-height: 1.18;
+            text-wrap: balance;
+            text-shadow: 0 4px 18px rgb(0 0 0 / 25%);
+        }
+
+        .section-title,
+        .update-copy h3,
+        .game-card-copy h3 { letter-spacing: 0; }
+
+        .hero-copy {
+            max-width: 500px;
+            margin: 19px 0 25px;
+            color: #F5EFFA;
+            font-size: clamp(15px, 1.4vw, 18px);
+            line-height: 1.55;
+            text-shadow: 0 2px 12px rgb(0 0 0 / 28%);
+        }
+
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 19px;
+            border: 2px solid transparent;
+            border-radius: 7px;
+            font-size: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform .18s ease, background .18s ease, color .18s ease;
+        }
+
+        .button:hover { transform: translateY(-2px); }
+
+        .button-pink {
+            color: var(--white);
+            background: var(--pink);
+            box-shadow: 0 6px 20px rgb(255 78 168 / 25%);
+        }
+
+        .button-pink:hover { background: var(--pink-dark); }
+
+        .button-white {
+            color: var(--purple);
+            background: var(--white);
+        }
+
+        .button-white:hover { background: #FFE7F3; }
+        .button svg { width: 17px; height: 17px; }
+
+        .hero-control {
+            position: absolute;
+            z-index: 5;
+            top: 50%;
+            display: grid;
+            width: 46px;
+            height: 46px;
+            place-items: center;
+            color: var(--white);
+            background: rgb(27 0 61 / 67%);
+            border: 1px solid rgb(255 255 255 / 35%);
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translateY(-50%);
+            transition: background .18s ease, transform .18s ease;
+        }
+
+        .hero-control:hover { background: var(--pink); transform: translateY(-50%) scale(1.06); }
+        .hero-control svg { width: 22px; height: 22px; }
+        .hero-control.prev { left: 18px; }
+        .hero-control.next { right: 18px; }
+
+        .hero-dots {
+            display: flex;
+            min-height: 44px;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+        }
+
+        .hero-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            background: #766789;
+            border: 0;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .hero-dot[aria-current="true"] {
+            width: 25px;
+            background: var(--pink);
+            border-radius: 999px;
+        }
+
+        .content-section {
+            padding: 62px clamp(24px, 5vw, 76px);
+        }
+
+        .section-inner { max-width: var(--content-width); margin: 0 auto; }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            position: relative;
+            margin: 0;
+            padding-left: 17px;
+            color: var(--purple);
+            font-size: clamp(20px, 2.4vw, 27px);
+            font-weight: 900;
+            letter-spacing: -.03em;
+        }
+
+        .section-title::before {
+            position: absolute;
+            top: 3px;
+            bottom: 3px;
+            left: 0;
+            width: 5px;
+            background: var(--pink);
+            border-radius: 8px;
+            content: "";
+        }
+
+        .section-link {
+            color: var(--purple);
+            font-size: 9px;
+            font-weight: 800;
+            text-decoration-color: var(--pink);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        .updates { background: var(--white); }
+
+        .update-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .update-card {
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            box-shadow: 0 7px 24px rgb(27 0 61 / 7%);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .update-card:hover {
+            box-shadow: 0 13px 28px rgb(27 0 61 / 14%);
+            transform: translateY(-4px);
+        }
+
+        .update-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .update-copy { padding: 19px 19px 20px; }
+
+        .update-label {
+            color: var(--pink-dark);
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .update-copy h3 {
+            margin: 8px 0 7px;
+            color: var(--purple);
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        .update-copy p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .game-section { background: var(--paper); }
+
+        .game-card {
+            display: grid;
+            overflow: hidden;
+            grid-template-columns: 1.12fr .88fr;
+            background: var(--purple);
+            border-radius: 15px;
+            box-shadow: 0 14px 36px rgb(27 0 61 / 16%);
+        }
+
+        .game-card-art { min-height: 390px; }
+
+        .game-card-art img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 390px;
+            object-fit: cover;
+        }
+
+        .game-card-copy {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: clamp(28px, 5vw, 60px);
+            color: var(--white);
+        }
+
+        .game-card-copy .eyebrow { margin-bottom: 12px; }
+
+        .game-card-copy h3 {
+            margin: 0;
+            font-size: clamp(25px, 3.4vw, 40px);
+            font-weight: 900;
+            letter-spacing: 0;
+            line-height: 1.25;
+        }
+
+        .game-card-copy p {
+            margin: 17px 0 20px;
+            color: #E7DDF2;
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        .platforms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0 0 24px;
+        }
+
+        .platforms span {
+            padding: 7px 10px;
+            color: #F7EFFF;
+            background: rgb(255 255 255 / 9%);
+            border: 1px solid rgb(255 255 255 / 18%);
+            border-radius: 999px;
+            font-size: 9px;
+            font-weight: 800;
+        }
+
+        .game-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+        .studio-section { background: #F0EAF6; }
+
+        .studio-grid {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            align-items: center;
+            gap: clamp(28px, 7vw, 90px);
+        }
+
+        .studio-stamp {
+            display: grid;
+            min-height: 225px;
+            place-items: center;
+            color: var(--white);
+            background: radial-gradient(circle at 35% 30%, #5D317D, var(--purple) 70%);
+            border-radius: 17px;
+            box-shadow: 9px 9px 0 var(--pink);
+        }
+
+        .studio-stamp span {
+            font-size: clamp(54px, 8vw, 96px);
+            font-weight: 900;
+            letter-spacing: -.09em;
+            text-shadow: 5px 5px 0 rgb(255 78 168 / 70%);
+        }
+
+        .studio-copy .section-title { margin-bottom: 18px; }
+
+        .studio-copy p {
+            max-width: 690px;
+            margin: 0 0 15px;
+            color: #51475F;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        .studio-copy .button { margin-top: 8px; }
+
+        .contact-section {
+            padding-top: 49px;
+            padding-bottom: 49px;
+            color: var(--white);
+            background: var(--purple);
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .contact-row h2 {
+            margin: 0 0 8px;
+            font-size: 19px;
+            font-weight: 900;
+        }
+
+        .contact-row p { margin: 0; color: #E6DDF0; font-size: 14px; }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 800;
+            text-decoration-color: var(--pink);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 5px;
+        }
+
+        .contact-email svg { width: 19px; height: 19px; color: var(--pink); }
 
         footer {
-            margin-top: 80px;
-            color: #777d87;
-            font-size: 14px;
+            display: flex;
+            min-height: 66px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-left: var(--rail-width);
+            padding: 15px clamp(24px, 5vw, 76px);
+            color: #D3C7E1;
+            background: var(--purple-deep);
+            font-size: 11px;
+        }
+
+        footer a { color: #F6D9E9; text-decoration-color: var(--pink); }
+
+        .hero h1,
+        .hero h2,
+        .section-title,
+        .update-copy h3,
+        .game-card-copy h3 { letter-spacing: 0; }
+
+        .game-card-copy h3 { line-height: 1.25; }
+        .rail-link, .update-label { font-size: 9px; }
+
+        :focus-visible {
+            outline: 3px solid #FF9CCA;
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 900px) {
+            :root { --rail-width: 72px; }
+            .topbar { padding-right: 18px; padding-left: 16px; }
+            .brand { min-width: auto; }
+            .brand-caption { display: none; }
+            .top-links { gap: 16px; margin: 0 12px; }
+            .top-links a { font-size: 12px; }
+            .hero-wrap { padding: 15px 15px 0; }
+            .hero { min-height: 420px; }
+            .content-section { padding-right: 26px; padding-left: 26px; }
+            .update-grid { gap: 13px; }
+            .update-copy { padding: 15px; }
+            .game-card { grid-template-columns: 1fr 1fr; }
+            .game-card-art, .game-card-art img { min-height: 350px; }
+        }
+
+        @media (max-width: 680px) {
+            :root { --topbar-height: 64px; }
+            .topbar { height: var(--topbar-height); padding: 0 14px; }
+            .brand-mark { width: 37px; height: 37px; font-size: 12px; }
+            .brand-name { font-size: 14px; }
+            .top-links { display: none; }
+            .top-action { gap: 7px; padding: 10px 12px; font-size: 11px; }
+            .side-rail {
+                top: auto;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 64px;
+                flex-direction: row;
+                justify-content: space-around;
+                box-shadow: 0 -5px 22px rgb(16 0 36 / 18%);
+            }
+            .rail-link {
+                min-width: 25%;
+                min-height: 64px;
+                gap: 3px;
+                padding: 6px 3px;
+                border-right: 1px solid rgb(255 255 255 / 13%);
+                border-bottom: 0;
+                font-size: 9px;
+            }
+            .rail-link svg { width: 20px; height: 20px; }
+            main { margin-left: 0; padding-bottom: 64px; }
+            .hero-wrap { padding: 10px 10px 0; }
+            .hero {
+                height: 590px;
+                min-height: 0;
+                border-radius: 7px;
+            }
+            .hero-slide::after {
+                background: linear-gradient(0deg, rgb(16 0 36 / 94%) 0%, rgb(16 0 36 / 73%) 38%, rgb(16 0 36 / 8%) 100%);
+            }
+            .hero-art { object-position: 55% center; }
+            .hero-content { right: 24px; bottom: 49px; left: 24px; }
+            .hero h1, .hero h2 { font-size: clamp(37px, 11vw, 58px); }
+            .hero-copy { margin: 14px 0 20px; font-size: 15px; }
+            .hero-control { width: 39px; height: 39px; }
+            .hero-control.prev { left: 10px; }
+            .hero-control.next { right: 10px; }
+            .hero-dots { min-height: 39px; }
+            .content-section { padding: 43px 19px; }
+            .section-heading { align-items: center; }
+            .section-link { font-size: 11px; }
+            .update-grid { grid-template-columns: 1fr; gap: 14px; }
+            .update-card { display: grid; grid-template-columns: 38% 1fr; }
+            .update-card img { height: 100%; min-height: 145px; aspect-ratio: auto; }
+            .update-copy { display: flex; flex-direction: column; justify-content: center; padding: 13px; }
+            .update-copy h3 { font-size: 16px; }
+            .update-copy p { font-size: 12px; }
+            .update-label { font-size: 9px; }
+            .game-card { grid-template-columns: 1fr; }
+            .game-card-art, .game-card-art img { min-height: 230px; max-height: 300px; }
+            .game-card-copy { padding: 27px 23px 30px; }
+            .game-card-copy h3 { font-size: 36px; }
+            .studio-grid { grid-template-columns: 1fr; gap: 28px; }
+            .studio-stamp { min-height: 155px; }
+            .studio-stamp span { font-size: 72px; }
+            .studio-copy p { font-size: 14px; }
+            .contact-row { align-items: flex-start; flex-direction: column; }
+            footer { align-items: flex-start; flex-direction: column; justify-content: center; gap: 8px; margin-left: 0; padding-bottom: 82px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
         }
     </style>
 </head>
-
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-<main>
-
-    <h1>Guerra Pixel Studio</h1>
-
-    <p>
-        Independent game studio creating pixel-art games inspired by
-        wildlife, culture and environmental themes.
-    </p>
-
-    <div class="game">
-        <h2>Mawkey The Last Macaw</h2>
-
-        <p>
-            A colourful pixel-art platformer inspired by Honduras,
-            its wildlife, landscapes and culture.
-        </p>
-    </div>
-
-    <h2>Contact</h2>
-
-    <p>
-        <a href="mailto:eduardo@guerrapixelstudio.com">
-            eduardo@guerrapixelstudio.com
+    <header class="topbar">
+        <a class="brand" href="#top" aria-label="Guerra Pixel Studio home">
+            <span class="brand-mark" aria-hidden="true">GP</span>
+            <span>
+                <span class="brand-name">Guerra Pixel Studio</span>
+                <span class="brand-caption">INDEPENDENT GAME STUDIO</span>
+            </span>
         </a>
-    </p>
 
-    <p>
-        <a href="/privacy/">Privacy Policy</a>
-    </p>
+        <nav class="top-links" aria-label="Main navigation">
+            <a href="#games">Games</a>
+            <a href="#updates">Updates</a>
+            <a href="#studio">Studio</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <a class="top-action" href="https://store.steampowered.com/app/3921580/Mawkey_The_Last_Macaw/" target="_blank" rel="noopener noreferrer">
+            Play Mawkey
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </header>
+
+    <aside class="side-rail" aria-label="Quick navigation">
+        <a class="rail-link" href="#games" aria-current="location">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7h10a4 4 0 0 1 3.8 2.8l1.1 3.7a2.5 2.5 0 0 1-4.1 2.5l-2.3-2H8.5l-2.3 2a2.5 2.5 0 0 1-4.1-2.5l1.1-3.7A4 4 0 0 1 7 7Z" stroke="currentColor" stroke-width="1.8"/><path d="M7 9.5v4M5 11.5h4M16.5 10.5h.01M18.5 12.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span>Games</span>
+        </a>
+        <a class="rail-link" href="#updates">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 2 1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m19 16 .7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z" fill="currentColor"/></svg>
+            <span>Updates</span>
+        </a>
+        <a class="rail-link" href="#studio">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5 12 2l8 3.5v13L12 22l-8-3.5v-13Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 9h8M8 12h8M8 15h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span>Studio</span>
+        </a>
+        <a class="rail-link" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Z" stroke="currentColor" stroke-width="1.8"/><path d="m4 6 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Contact</span>
+        </a>
+    </aside>
+
+    <main id="main">
+        <div id="top"></div>
+        <section class="hero-wrap" id="games" aria-label="Featured game">
+            <div class="hero" aria-roledescription="carousel" aria-label="Featured games and stories">
+                <div class="hero-track" id="heroTrack">
+                    <article class="hero-slide" aria-label="Mawkey The Last Macaw">
+                        <img class="hero-art" src="images/mawkey-hero.png" alt="Mawkey and animal friends in a lush Honduran jungle" fetchpriority="high">
+                        <div class="hero-content">
+                            <span class="eyebrow">Featured adventure</span>
+                            <h1>Mawkey<br>The Last Macaw</h1>
+                            <p class="hero-copy">A colourful pixel-art journey through Honduras, where one macaw fights to protect the home he loves.</p>
+                            <div class="hero-actions">
+                                <a class="button button-pink" href="https://store.steampowered.com/app/3921580/Mawkey_The_Last_Macaw/" target="_blank" rel="noopener noreferrer">
+                                    Explore on Steam
+                                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </a>
+                                <a class="button button-white" href="https://play.google.com/store/apps/details?id=com.guerrapixelstudio.mawkeythelastmacaw" target="_blank" rel="noopener noreferrer">Google Play</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="hero-slide" aria-label="Explore the world of Mawkey" aria-hidden="true" inert>
+                        <img class="hero-art" src="images/mawkey-forest.png" alt="Gameplay screenshot of Mawkey exploring a forest level" loading="lazy">
+                        <div class="hero-content">
+                            <span class="eyebrow">Explore Honduras</span>
+                            <h2>A world full of life</h2>
+                            <p class="hero-copy">Meet animal friends, discover colourful places and take on the machines threatening the forest.</p>
+                            <div class="hero-actions">
+                                <a class="button button-pink" href="https://store.steampowered.com/app/3921580/Mawkey_The_Last_Macaw/" target="_blank" rel="noopener noreferrer">Discover the game</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="hero-slide" aria-label="A story inspired by wildlife and the environment" aria-hidden="true" inert>
+                        <img class="hero-art" src="images/mawkey-frutiger-aero.png" alt="Scenes from Mawkey's pixel-art adventure" loading="lazy">
+                        <div class="hero-content">
+                            <span class="eyebrow">Made with a message</span>
+                            <h2>Small game.<br>Big heart.</h2>
+                            <p class="hero-copy">Our games celebrate wildlife, culture and the places we call home.</p>
+                            <div class="hero-actions">
+                                <a class="button button-pink" href="#studio">Meet the studio</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <button class="hero-control prev" type="button" aria-label="Previous slide">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 5-7 7 7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="hero-control next" type="button" aria-label="Next slide">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 5 7 7-7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+            </div>
+            <div class="hero-dots" aria-label="Choose featured slide">
+                <button class="hero-dot" type="button" aria-label="Show slide 1" aria-current="true"></button>
+                <button class="hero-dot" type="button" aria-label="Show slide 2" aria-current="false"></button>
+                <button class="hero-dot" type="button" aria-label="Show slide 3" aria-current="false"></button>
+            </div>
+        </section>
+
+        <section class="content-section updates" id="updates">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <h2 class="section-title">Latest updates</h2>
+                    <a class="section-link" href="https://store.steampowered.com/app/3921580/Mawkey_The_Last_Macaw/" target="_blank" rel="noopener noreferrer">More about Mawkey</a>
+                </div>
+                <div class="update-grid">
+                    <article class="update-card">
+                        <img src="images/mawkey-frutiger-aero.png" alt="Colourful scenes from Mawkey's adventure" loading="lazy">
+                        <div class="update-copy">
+                            <span class="update-label">New content</span>
+                            <h3>Secret worlds to discover</h3>
+                            <p>Find hidden paths and explore five colourful Frutiger Aero levels.</p>
+                        </div>
+                    </article>
+                    <article class="update-card">
+                        <img src="images/mawkey-forest.png" alt="Mawkey platforming through a green forest" loading="lazy">
+                        <div class="update-copy">
+                            <span class="update-label">The adventure</span>
+                            <h3>Inspired by Honduras</h3>
+                            <p>Explore pixel-art landscapes inspired by Honduran wildlife and culture.</p>
+                        </div>
+                    </article>
+                    <article class="update-card">
+                        <img src="images/mawkey-friends.png" alt="Mawkey with his animal friends" loading="lazy">
+                        <div class="update-copy">
+                            <span class="update-label">Meet the characters</span>
+                            <h3>Friends along the way</h3>
+                            <p>Rescue animals and meet the companions who help Mawkey on his journey.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section game-section">
+            <div class="section-inner">
+                <div class="section-heading">
+                    <h2 class="section-title">The featured game</h2>
+                </div>
+                <article class="game-card">
+                    <div class="game-card-art">
+                        <img src="images/mawkey-forest.png" alt="Mawkey exploring a lush pixel-art forest" loading="lazy">
+                    </div>
+                    <div class="game-card-copy">
+                        <span class="eyebrow">Out now</span>
+                        <h3>Mawkey<br>The Last Macaw</h3>
+                        <p>Take flight as Mawkey in a 2D pixel-art platform adventure about protecting wildlife and standing up for the natural world.</p>
+                        <div class="platforms" aria-label="Available platforms">
+                            <span>PC</span>
+                            <span>macOS</span>
+                            <span>Android</span>
+                        </div>
+                        <div class="game-actions">
+                            <a class="button button-pink" href="https://store.steampowered.com/app/3921580/Mawkey_The_Last_Macaw/" target="_blank" rel="noopener noreferrer">Visit Steam</a>
+                            <a class="button button-white" href="https://play.google.com/store/apps/details?id=com.guerrapixelstudio.mawkeythelastmacaw" target="_blank" rel="noopener noreferrer">Get it on Google Play</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-section studio-section" id="studio">
+            <div class="section-inner studio-grid">
+                <div class="studio-stamp" aria-hidden="true"><span>GP</span></div>
+                <div class="studio-copy">
+                    <h2 class="section-title">A small studio with a big imagination</h2>
+                    <p>Guerra Pixel Studio is an independent game studio creating colourful pixel-art adventures inspired by Honduras, its wildlife and its culture.</p>
+                    <p>We make games with heart: playful worlds, memorable characters and stories that encourage people to care about the natural world.</p>
+                    <a class="button button-pink" href="mailto:eduardo@guerrapixelstudio.com">Get in touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section contact-section" id="contact">
+            <div class="section-inner contact-row">
+                <div>
+                    <h2>Want to talk games?</h2>
+                    <p>For press, collaborations or a friendly hello, send us a message.</p>
+                </div>
+                <a class="contact-email" href="mailto:eduardo@guerrapixelstudio.com">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Z" stroke="currentColor" stroke-width="1.8"/><path d="m4 6 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    eduardo@guerrapixelstudio.com
+                </a>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        © 2026 Guerra Pixel Studio
+        <span>© 2026 Guerra Pixel Studio</span>
+        <a href="/privacy/">Privacy Policy</a>
     </footer>
 
-</main>
+    <script>
+        (() => {
+            const track = document.getElementById("heroTrack");
+            const slides = Array.from(track.querySelectorAll(".hero-slide"));
+            const dots = Array.from(document.querySelectorAll(".hero-dot"));
+            const previous = document.querySelector(".hero-control.prev");
+            const next = document.querySelector(".hero-control.next");
+            let activeSlide = 0;
 
+            function showSlide(index) {
+                activeSlide = (index + slides.length) % slides.length;
+                track.style.transform = `translateX(-${activeSlide * 100}%)`;
+                slides.forEach((slide, i) => {
+                    slide.setAttribute("aria-hidden", i === activeSlide ? "false" : "true");
+                    slide.inert = i !== activeSlide;
+                });
+                dots.forEach((dot, i) => {
+                    dot.setAttribute("aria-current", i === activeSlide ? "true" : "false");
+                });
+            }
+
+            previous.addEventListener("click", () => showSlide(activeSlide - 1));
+            next.addEventListener("click", () => showSlide(activeSlide + 1));
+            dots.forEach((dot, index) => dot.addEventListener("click", () => showSlide(index)));
+
+            document.addEventListener("keydown", event => {
+                if (event.key === "ArrowLeft") showSlide(activeSlide - 1);
+                if (event.key === "ArrowRight") showSlide(activeSlide + 1);
+            });
+        })();
+    </script>
 </body>
 </html>
