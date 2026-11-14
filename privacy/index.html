@@ -3,398 +3,670 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1B003D">
+    <meta name="description" content="Privacy Policy for Guerra Pixel Studio and Mawkey The Last Macaw.">
+    <title>Privacy Policy | Guerra Pixel Studio</title>
 
-    <title>Privacy Policy - Guerra Pixel Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --purple: #1B003D;
+            --purple-deep: #100024;
+            --pink: #FF4EA8;
+            --pink-dark: #E83D91;
+            --white: #FFFFFF;
+            --paper: #F8F6FB;
+            --ink: #211832;
+            --muted: #62596F;
+            --line: #E8E1EF;
+            --pixel-font: "Silkscreen", monospace;
+            --rail-width: 88px;
+            --topbar-height: 76px;
+            --content-width: 1040px;
+        }
+
+        * { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--topbar-height) + 20px);
+        }
+
         body {
             margin: 0;
+            color: var(--ink);
+            background: var(--paper);
             font-family: Arial, Helvetica, sans-serif;
-            background: #111318;
-            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
         }
 
-        main {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 60px 24px;
+        a { color: inherit; }
+        button { font: inherit; }
+
+        .pixel-text {
+            font-family: var(--pixel-font);
+            letter-spacing: 0;
         }
 
-        h1,
-        h2 {
-            color: #ffffff;
+        .skip-link {
+            position: fixed;
+            z-index: 100;
+            top: 8px;
+            left: 8px;
+            padding: 12px 16px;
+            color: var(--purple);
+            background: var(--white);
+            border-radius: 8px;
+            transform: translateY(-150%);
         }
 
-        p,
-        li {
-            color: #c8cbd1;
-            line-height: 1.7;
-            font-size: 16px;
+        .skip-link:focus { transform: translateY(0); }
+
+        .topbar {
+            position: sticky;
+            z-index: 20;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--topbar-height);
+            padding: 0 30px 0 24px;
+            color: var(--white);
+            background: var(--purple);
+            box-shadow: 0 4px 18px rgb(16 0 36 / 18%);
         }
 
-        a {
-            color: #59b8ff;
+        .brand {
+            display: inline-flex;
+            min-width: 225px;
+            align-items: center;
+            gap: 12px;
+            color: var(--white);
+            text-decoration: none;
         }
 
-        .back {
-            display: inline-block;
-            margin-bottom: 30px;
-        }
-
-        footer {
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            color: #777d87;
+        .brand-mark {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            color: var(--white);
+            background: var(--pink);
+            border: 2px solid rgb(255 255 255 / 90%);
+            border-radius: 11px;
             font-size: 14px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            box-shadow: 3px 3px 0 rgb(0 0 0 / 22%);
+        }
+
+        .brand-name {
+            display: block;
+            font-family: var(--pixel-font);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .brand-caption {
+            display: block;
+            margin-top: 3px;
+            color: #E5D8F3;
+            font-family: var(--pixel-font);
+            font-size: 7px;
+        }
+
+        .top-links {
+            display: flex;
+            align-items: center;
+            gap: clamp(18px, 3vw, 42px);
+            margin: 0 24px;
+        }
+
+        .top-links a {
+            color: #F7F1FC;
+            font-family: var(--pixel-font);
+            font-size: 10px;
+            text-decoration: none;
+            transition: color .18s ease;
+        }
+
+        .top-links a:hover,
+        .top-links a:focus-visible { color: #FFB6D9; }
+
+        .top-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 12px 17px;
+            color: var(--purple);
+            background: var(--white);
+            border-radius: 999px;
+            font-family: var(--pixel-font);
+            font-size: 9px;
+            text-decoration: none;
+            transition: transform .18s ease, background .18s ease;
+        }
+
+        .top-action:hover { background: #FFE7F3; transform: translateY(-1px); }
+        .top-action svg { width: 16px; height: 16px; }
+
+        .side-rail {
+            position: fixed;
+            z-index: 18;
+            top: var(--topbar-height);
+            bottom: 0;
+            left: 0;
+            display: flex;
+            width: var(--rail-width);
+            flex-direction: column;
+            background: var(--purple);
+            box-shadow: 5px 0 22px rgb(16 0 36 / 12%);
+        }
+
+        .rail-link {
+            display: flex;
+            min-height: 83px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 10px 4px;
+            color: #F3EAFB;
+            border-bottom: 1px solid rgb(255 255 255 / 13%);
+            font-family: var(--pixel-font);
+            font-size: 9px;
+            line-height: 1.3;
+            text-align: center;
+            text-decoration: none;
+            transition: color .18s ease, background .18s ease;
+        }
+
+        .rail-link svg { width: 25px; height: 25px; }
+        .rail-link:hover,
+        .rail-link:focus-visible { color: var(--white); background: var(--pink); }
+
+        main { margin-left: var(--rail-width); }
+
+        .page-banner {
+            padding: 40px 24px 34px;
+            color: var(--white);
+            background: var(--purple-deep);
+        }
+
+        .page-banner-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 22px;
+            color: #F7D8EA;
+            font-family: var(--pixel-font);
+            font-size: 10px;
+            text-decoration-color: var(--pink);
+            text-underline-offset: 5px;
+        }
+
+        .page-kicker {
+            margin: 0 0 12px;
+            color: #FFB6D9;
+            font-family: var(--pixel-font);
+            font-size: 10px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: var(--pixel-font);
+            font-size: clamp(28px, 4.5vw, 46px);
+            font-weight: 700;
+            letter-spacing: 0;
+            line-height: 1.25;
+        }
+
+        .last-updated {
+            display: inline-block;
+            margin: 18px 0 0;
+            padding: 8px 12px;
+            color: var(--purple);
+            background: var(--white);
+            border-radius: 999px;
+            font-family: var(--pixel-font);
+            font-size: 9px;
+        }
+
+        .policy-wrap {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 34px 24px 70px;
+        }
+
+        .policy-card {
+            padding: clamp(24px, 5vw, 58px);
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 15px;
+            box-shadow: 0 12px 36px rgb(27 0 61 / 8%);
+        }
+
+        .intro {
+            margin: 0 0 26px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .contents {
+            margin: 0 0 34px;
+            padding: 22px 24px;
+            background: #F6F1FA;
+            border-left: 5px solid var(--pink);
+            border-radius: 8px;
+        }
+
+        .contents h2 {
+            margin: 0 0 14px;
+            color: var(--purple);
+            font-family: var(--pixel-font);
+            font-size: 14px;
+            letter-spacing: 0;
+        }
+
+        .contents ul {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px 20px;
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .contents li { color: var(--pink-dark); }
+
+        .contents a {
+            color: var(--purple);
+            font-size: 13px;
+            line-height: 1.5;
+            text-decoration-color: #C7B6D9;
+            text-underline-offset: 3px;
+        }
+
+        .policy-section {
+            padding: 24px 0 20px;
+            border-bottom: 1px solid var(--line);
+            scroll-margin-top: 100px;
+        }
+
+        .policy-section:last-child { border-bottom: 0; }
+
+        .policy-section h2 {
+            margin: 0 0 14px;
+            color: var(--purple);
+            font-family: var(--pixel-font);
+            font-size: clamp(14px, 1.7vw, 17px);
+            font-weight: 700;
+            letter-spacing: 0;
+            line-height: 1.55;
+        }
+
+        .policy-section p,
+        .policy-section li {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.75;
+        }
+
+        .policy-section p { margin: 0 0 14px; }
+        .policy-section p:last-child { margin-bottom: 0; }
+        .policy-section ul { margin: 0 0 16px; padding-left: 24px; }
+        .policy-section li { margin: 5px 0; padding-left: 4px; }
+
+        .policy-section li::marker { color: var(--pink-dark); }
+
+        .policy-section a {
+            color: #8E2670;
+            text-decoration-color: var(--pink);
+            text-decoration-thickness: 1.5px;
+            text-underline-offset: 3px;
+            overflow-wrap: anywhere;
+        }
+
+        .policy-section a:hover { color: var(--purple); }
+
+        .policy-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-left: var(--rail-width);
+            padding: 20px clamp(24px, 5vw, 76px);
+            color: #D3C7E1;
+            background: var(--purple-deep);
+            font-size: 12px;
+        }
+
+        .policy-footer a {
+            color: #F6D9E9;
+            text-decoration-color: var(--pink);
+            text-underline-offset: 4px;
+        }
+
+        :focus-visible {
+            outline: 3px solid #FF9CCA;
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 900px) {
+            :root { --rail-width: 72px; }
+            .topbar { padding-right: 18px; padding-left: 16px; }
+            .brand { min-width: auto; }
+            .brand-caption { display: none; }
+            .top-links { gap: 16px; margin: 0 12px; }
+            .top-links a { font-size: 9px; }
+            .policy-wrap { padding-right: 20px; padding-left: 20px; }
+        }
+
+        @media (max-width: 680px) {
+            :root { --topbar-height: 64px; }
+            .topbar { height: var(--topbar-height); padding: 0 14px; }
+            .brand-mark { width: 37px; height: 37px; font-size: 12px; }
+            .brand-name { font-size: 12px; }
+            .top-links { display: none; }
+            .top-action { gap: 7px; padding: 10px 12px; font-size: 8px; }
+
+            .side-rail {
+                top: auto;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 64px;
+                flex-direction: row;
+                justify-content: space-around;
+                box-shadow: 0 -5px 22px rgb(16 0 36 / 18%);
+            }
+
+            .rail-link {
+                min-width: 25%;
+                min-height: 64px;
+                gap: 3px;
+                padding: 6px 3px;
+                border-right: 1px solid rgb(255 255 255 / 13%);
+                border-bottom: 0;
+                font-size: 8px;
+            }
+
+            .rail-link svg { width: 20px; height: 20px; }
+            main { margin-left: 0; padding-bottom: 64px; }
+            .page-banner { padding: 28px 19px 25px; }
+            .back-link { font-size: 9px; }
+            h1 { font-size: clamp(25px, 8vw, 36px); }
+            .last-updated { font-size: 8px; }
+            .policy-wrap { padding: 18px 12px 35px; }
+            .policy-card { padding: 22px 18px; border-radius: 11px; }
+            .intro { font-size: 15px; }
+            .contents { padding: 18px 16px; }
+            .contents ul { grid-template-columns: 1fr; gap: 7px; }
+            .contents h2 { font-size: 12px; }
+            .policy-section { padding: 20px 0 17px; }
+            .policy-section h2 { font-size: 13px; }
+            .policy-section p,
+            .policy-section li { font-size: 14px; }
+            .policy-footer {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 8px;
+                margin-left: 0;
+                padding: 18px 20px 82px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
+            }
         }
     </style>
 </head>
-
 <body>
-
-<main>
-
-    <a class="back" href="/">← Guerra Pixel Studio</a>
-
-    <h1>Privacy Policy</h1>
-
-    <p>
-        <strong>Last updated: 11 August 2026</strong>
-    </p>
-
-    <p>
-        This Privacy Policy explains how Guerra Pixel Studio handles
-        information in connection with its website and games, including
-        Mawkey The Last Macaw.
-    </p>
-
-    <h2>1. Information We Collect</h2>
-
-    <p>
-        Guerra Pixel Studio does not require players to create a separate
-        Guerra Pixel Studio account and does not operate its own player
-        account database.
-    </p>
-
-    <p>
-        Guerra Pixel Studio does not intentionally collect personal
-        information directly through this website unless you voluntarily
-        contact us by email.
-    </p>
-
-    <p>
-        If you contact Guerra Pixel Studio by email, we may receive:
-    </p>
-
-    <ul>
-        <li>Your email address.</li>
-        <li>Your name, if you choose to provide it.</li>
-        <li>The contents of your message.</li>
-        <li>Any information or files you voluntarily include.</li>
-    </ul>
-
-    <p>
-        The website hosting provider may also process limited technical
-        information such as IP addresses, browser information, connection
-        information, and server logs when necessary to operate and secure
-        the website.
-    </p>
-
-    <h2>2. Epic Games Store and Epic Online Services</h2>
-
-    <p>
-        The Epic Games Store version of Mawkey The Last Macaw uses
-        Epic Account Services and Epic Online Services (EOS) to provide
-        platform functionality such as player authentication and achievements.
-    </p>
-
-    <p>
-        When these services are used, Mawkey The Last Macaw may access or
-        process information provided by Epic Games, including:
-    </p>
-
-    <ul>
-        <li>Epic Account ID or other Epic platform identifiers.</li>
-        <li>Epic Games display name.</li>
-        <li>Language information.</li>
-        <li>Linked account display names when permission has been granted.</li>
-        <li>Authentication information required to identify the current player.</li>
-        <li>Achievement progress and achievement unlock status.</li>
-    </ul>
-
-    <p>
-        This information is obtained through Epic Games services when the
-        player launches or uses Epic-enabled features in Mawkey The Last
-        Macaw.
-    </p>
-
-    <p>
-        Guerra Pixel Studio does not receive or have access to your Epic
-        Games password or payment card information.
-    </p>
-
-    <h2>3. How We Use Information</h2>
-
-    <p>
-        Information obtained through Epic Games services is used only when
-        necessary to provide functionality related to Mawkey The Last Macaw.
-    </p>
-
-    <p>
-        This may include:
-    </p>
-
-    <ul>
-        <li>Authenticating the player with Epic Games.</li>
-        <li>Identifying the currently signed-in Epic Games user.</li>
-        <li>
-            Displaying or using the player's Epic Games account information
-            where permitted.
-        </li>
-        <li>Providing Epic Games achievements.</li>
-        <li>Recording achievement progress and achievement unlocks.</li>
-        <li>Providing other Epic Games platform functionality.</li>
-        <li>Diagnosing technical problems.</li>
-        <li>Responding to player support requests.</li>
-        <li>
-            Protecting the game and its services from misuse where applicable.
-        </li>
-    </ul>
-
-    <p>
-        Guerra Pixel Studio does not use Epic Games account information for
-        behavioural advertising, profiling, or unrelated marketing.
-    </p>
-
-    <h2>4. How Information Is Shared</h2>
-
-    <p>
-        Guerra Pixel Studio does not sell or rent personal information.
-    </p>
-
-    <p>
-        Information required for Epic Games functionality may be transmitted
-        to or processed by Epic Games through Epic Account Services,
-        Epic Online Services, and the Epic Games Store.
-    </p>
-
-    <p>
-        Epic Games processes information according to its own privacy policy
-        and terms.
-    </p>
-
-    <p>
-        You can review the Epic Games Privacy Policy here:
-    </p>
-
-    <p>
-        <a
-            href="https://legal.epicgames.com/en-US/epicgames/privacypolicy"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Epic Games Privacy Policy
-        </a>
-    </p>
-
-    <p>
-        Information may also be disclosed if required by applicable law,
-        legal process, court order, or a valid request from a competent
-        authority.
-    </p>
-
-    <p>
-        Guerra Pixel Studio does not share player information with
-        advertising networks or data brokers.
-    </p>
-
-    <h2>5. Data Storage and Retention</h2>
-
-    <p>
-        Guerra Pixel Studio does not currently maintain its own server-side
-        database containing Epic Games player profiles.
-    </p>
-
-    <p>
-        Epic account identifiers and related information may be processed
-        temporarily while Mawkey The Last Macaw is running when necessary
-        to authenticate the player and provide Epic Games functionality.
-    </p>
-
-    <p>
-        Achievement data, Epic account information, and other information
-        stored through Epic Games services may be retained by Epic Games
-        according to Epic Games' own privacy and data-retention practices.
-    </p>
-
-    <p>
-        Emails sent directly to Guerra Pixel Studio may be retained for as
-        long as reasonably necessary to respond to the request, provide
-        support, maintain relevant business records, resolve disputes, or
-        comply with legal obligations.
-    </p>
-
-    <p>
-        Information controlled directly by Guerra Pixel Studio that is no
-        longer reasonably necessary will be deleted when practicable.
-    </p>
-
-    <h2>6. Accessing, Correcting or Deleting Your Information</h2>
-
-    <p>
-        You may contact Guerra Pixel Studio if you would like to:
-    </p>
-
-    <ul>
-        <li>
-            Ask what personal information Guerra Pixel Studio holds about you.
-        </li>
-        <li>
-            Request correction of information controlled by Guerra Pixel Studio.
-        </li>
-        <li>
-            Request deletion of information controlled by Guerra Pixel Studio.
-        </li>
-        <li>Ask how your information is used.</li>
-        <li>Raise a privacy-related concern.</li>
-    </ul>
-
-    <p>
-        Requests can be sent to:
-        <a href="mailto:eduardo@guerrapixelstudio.com">
-            eduardo@guerrapixelstudio.com
-        </a>
-    </p>
-
-    <p>
-        Guerra Pixel Studio may request enough information to reasonably
-        verify your request before taking action.
-    </p>
-
-    <p>
-        Information held directly by Epic Games, including Epic Games
-        account information, may need to be accessed, corrected, or deleted
-        through Epic Games' own account and privacy services.
-    </p>
-
-    <h2>7. Other Platforms</h2>
-
-    <p>
-        Mawkey The Last Macaw may also be distributed through other
-        platforms such as Steam.
-    </p>
-
-    <p>
-        These platforms may separately process information including account
-        identifiers, purchase information, achievement information, device
-        information, or other platform-related data according to their own
-        privacy policies and terms.
-    </p>
-
-    <p>
-        Guerra Pixel Studio does not control the independent privacy practices
-        of these platforms.
-    </p>
-
-    <h2>8. Website Hosting</h2>
-
-    <p>
-        The Guerra Pixel Studio website is hosted using third-party
-        infrastructure.
-    </p>
-
-    <p>
-        Hosting providers may process limited technical information such as
-        IP addresses, browser information, connection information, and server
-        logs when necessary to deliver, maintain, and secure the website.
-    </p>
-
-    <h2>9. Cookies and Tracking</h2>
-
-    <p>
-        Guerra Pixel Studio does not currently use its own advertising
-        cookies or behavioural tracking technologies on this website.
-    </p>
-
-    <p>
-        Third-party infrastructure used to host or operate the website may
-        process limited technical information necessary to provide its
-        services.
-    </p>
-
-    <h2>10. Children's Privacy</h2>
-
-    <p>
-        Guerra Pixel Studio does not knowingly collect personal information
-        directly from children through this website.
-    </p>
-
-    <p>
-        Where Epic Games or another platform provides account or platform
-        services, that platform's respective privacy, parental control, and
-        age-related policies apply to information processed through those
-        services.
-    </p>
-
-    <h2>11. Security</h2>
-
-    <p>
-        Guerra Pixel Studio takes reasonable measures to limit access to
-        personal information and to use information only for the purposes
-        described in this Privacy Policy.
-    </p>
-
-    <p>
-        However, no internet-based service or method of electronic storage
-        can guarantee absolute security.
-    </p>
-
-    <h2>12. Changes to This Privacy Policy</h2>
-
-    <p>
-        This Privacy Policy may be updated when our games, website, platform
-        integrations, services, or legal requirements change.
-    </p>
-
-    <p>
-        The latest version will always be available at:
-    </p>
-
-    <p>
-        <a href="https://guerrapixelstudio.com/privacy/">
-            https://guerrapixelstudio.com/privacy/
-        </a>
-    </p>
-
-    <h2>13. Contact</h2>
-
-    <p>
-        If you have questions, concerns, or requests regarding this Privacy
-        Policy, you can contact:
-    </p>
-
-    <p>
-        <strong>Guerra Pixel Studio</strong><br>
-
-        Email:
-        <a href="mailto:eduardo@guerrapixelstudio.com">
-            eduardo@guerrapixelstudio.com
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar">
+        <a class="brand" href="/" aria-label="Guerra Pixel Studio home">
+            <span class="brand-mark" aria-hidden="true">GP</span>
+            <span>
+                <span class="brand-name">Guerra Pixel Studio</span>
+                <span class="brand-caption">INDEPENDENT GAME STUDIO</span>
+            </span>
         </a>
 
-        <br>
+        <nav class="top-links" aria-label="Main navigation">
+            <a href="/#games">Games</a>
+            <a href="/#updates">Updates</a>
+            <a href="/#studio">Studio</a>
+            <a href="/#contact">Contact</a>
+        </nav>
 
-        Website:
-        <a href="https://guerrapixelstudio.com">
-            https://guerrapixelstudio.com
+        <a class="top-action" href="https://store.steampowered.com/app/3921580/Mawkey_The_Last_Macaw/" target="_blank" rel="noopener noreferrer">
+            Play Mawkey
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-    </p>
+    </header>
 
-    <footer>
-        © 2026 Guerra Pixel Studio
+    <aside class="side-rail" aria-label="Quick navigation">
+        <a class="rail-link" href="/#games">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7h10a4 4 0 0 1 3.8 2.8l1.1 3.7a2.5 2.5 0 0 1-4.1 2.5l-2.3-2H8.5l-2.3 2a2.5 2.5 0 0 1-4.1-2.5l1.1-3.7A4 4 0 0 1 7 7Z" stroke="currentColor" stroke-width="1.8"/><path d="M7 9.5v4M5 11.5h4M16.5 10.5h.01M18.5 12.5h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span>Games</span>
+        </a>
+        <a class="rail-link" href="/#updates">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 2 1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m19 16 .7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z" fill="currentColor"/></svg>
+            <span>Updates</span>
+        </a>
+        <a class="rail-link" href="/#studio">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5 12 2l8 3.5v13L12 22l-8-3.5v-13Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 9h8M8 12h8M8 15h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span>Studio</span>
+        </a>
+        <a class="rail-link" href="/#contact">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5v-11Z" stroke="currentColor" stroke-width="1.8"/><path d="m4 6 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Contact</span>
+        </a>
+    </aside>
+
+    <main id="main">
+        <section class="page-banner">
+            <div class="page-banner-inner">
+                <a class="back-link" href="/">← Back to Guerra Pixel Studio</a>
+                <p class="page-kicker">Your information matters</p>
+                <h1>Privacy Policy</h1>
+                <p class="last-updated"><strong>Last updated: 11 August 2026</strong></p>
+            </div>
+        </section>
+
+        <div class="policy-wrap">
+            <article class="policy-card">
+                <p class="intro">
+                    This Privacy Policy explains how Guerra Pixel Studio handles
+                    information in connection with its website and games, including
+                    Mawkey The Last Macaw.
+                </p>
+
+                <nav class="contents" aria-label="Contents">
+                    <h2>On this page</h2>
+                    <ul>
+                        <li><a href="#information">Information We Collect</a></li>
+                        <li><a href="#epic">Epic Games Store and Epic Online Services</a></li>
+                        <li><a href="#use">How We Use Information</a></li>
+                        <li><a href="#sharing">How Information Is Shared</a></li>
+                        <li><a href="#retention">Data Storage and Retention</a></li>
+                        <li><a href="#rights">Accessing, Correcting or Deleting Your Information</a></li>
+                        <li><a href="#platforms">Other Platforms</a></li>
+                        <li><a href="#hosting">Website Hosting</a></li>
+                        <li><a href="#cookies">Cookies and Tracking</a></li>
+                        <li><a href="#children">Children's Privacy</a></li>
+                        <li><a href="#security">Security</a></li>
+                        <li><a href="#changes">Changes to This Privacy Policy</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <section class="policy-section" id="information">
+                    <h2>1. Information We Collect</h2>
+                    <p>Guerra Pixel Studio does not require players to create a separate Guerra Pixel Studio account and does not operate its own player account database.</p>
+                    <p>Guerra Pixel Studio does not intentionally collect personal information directly through this website unless you voluntarily contact us by email.</p>
+                    <p>If you contact Guerra Pixel Studio by email, we may receive:</p>
+                    <ul>
+                        <li>Your email address.</li>
+                        <li>Your name, if you choose to provide it.</li>
+                        <li>The contents of your message.</li>
+                        <li>Any information or files you voluntarily include.</li>
+                    </ul>
+                    <p>The website hosting provider may also process limited technical information such as IP addresses, browser information, connection information, and server logs when necessary to operate and secure the website.</p>
+                </section>
+
+                <section class="policy-section" id="epic">
+                    <h2>2. Epic Games Store and Epic Online Services</h2>
+                    <p>The Epic Games Store version of Mawkey The Last Macaw uses Epic Account Services and Epic Online Services (EOS) to provide platform functionality such as player authentication and achievements.</p>
+                    <p>When these services are used, Mawkey The Last Macaw may access or process information provided by Epic Games, including:</p>
+                    <ul>
+                        <li>Epic Account ID or other Epic platform identifiers.</li>
+                        <li>Epic Games display name.</li>
+                        <li>Language information.</li>
+                        <li>Linked account display names when permission has been granted.</li>
+                        <li>Authentication information required to identify the current player.</li>
+                        <li>Achievement progress and achievement unlock status.</li>
+                    </ul>
+                    <p>This information is obtained through Epic Games services when the player launches or uses Epic-enabled features in Mawkey The Last Macaw.</p>
+                    <p>Guerra Pixel Studio does not receive or have access to your Epic Games password or payment card information.</p>
+                </section>
+
+                <section class="policy-section" id="use">
+                    <h2>3. How We Use Information</h2>
+                    <p>Information obtained through Epic Games services is used only when necessary to provide functionality related to Mawkey The Last Macaw.</p>
+                    <p>This may include:</p>
+                    <ul>
+                        <li>Authenticating the player with Epic Games.</li>
+                        <li>Identifying the currently signed-in Epic Games user.</li>
+                        <li>Displaying or using the player's Epic Games account information where permitted.</li>
+                        <li>Providing Epic Games achievements.</li>
+                        <li>Recording achievement progress and achievement unlocks.</li>
+                        <li>Providing other Epic Games platform functionality.</li>
+                        <li>Diagnosing technical problems.</li>
+                        <li>Responding to player support requests.</li>
+                        <li>Protecting the game and its services from misuse where applicable.</li>
+                    </ul>
+                    <p>Guerra Pixel Studio does not use Epic Games account information for behavioural advertising, profiling, or unrelated marketing.</p>
+                </section>
+
+                <section class="policy-section" id="sharing">
+                    <h2>4. How Information Is Shared</h2>
+                    <p>Guerra Pixel Studio does not sell or rent personal information.</p>
+                    <p>Information required for Epic Games functionality may be transmitted to or processed by Epic Games through Epic Account Services, Epic Online Services, and the Epic Games Store.</p>
+                    <p>Epic Games processes information according to its own privacy policy and terms.</p>
+                    <p>You can review the Epic Games Privacy Policy here:</p>
+                    <p><a href="https://legal.epicgames.com/en-US/epicgames/privacypolicy" target="_blank" rel="noopener noreferrer">Epic Games Privacy Policy</a></p>
+                    <p>Information may also be disclosed if required by applicable law, legal process, court order, or a valid request from a competent authority.</p>
+                    <p>Guerra Pixel Studio does not share player information with advertising networks or data brokers.</p>
+                </section>
+
+                <section class="policy-section" id="retention">
+                    <h2>5. Data Storage and Retention</h2>
+                    <p>Guerra Pixel Studio does not currently maintain its own server-side database containing Epic Games player profiles.</p>
+                    <p>Epic account identifiers and related information may be processed temporarily while Mawkey The Last Macaw is running when necessary to authenticate the player and provide Epic Games functionality.</p>
+                    <p>Achievement data, Epic account information, and other information stored through Epic Games services may be retained by Epic Games according to Epic Games' own privacy and data-retention practices.</p>
+                    <p>Emails sent directly to Guerra Pixel Studio may be retained for as long as reasonably necessary to respond to the request, provide support, maintain relevant business records, resolve disputes, or comply with legal obligations.</p>
+                    <p>Information controlled directly by Guerra Pixel Studio that is no longer reasonably necessary will be deleted when practicable.</p>
+                </section>
+
+                <section class="policy-section" id="rights">
+                    <h2>6. Accessing, Correcting or Deleting Your Information</h2>
+                    <p>You may contact Guerra Pixel Studio if you would like to:</p>
+                    <ul>
+                        <li>Ask what personal information Guerra Pixel Studio holds about you.</li>
+                        <li>Request correction of information controlled by Guerra Pixel Studio.</li>
+                        <li>Request deletion of information controlled by Guerra Pixel Studio.</li>
+                        <li>Ask how your information is used.</li>
+                        <li>Raise a privacy-related concern.</li>
+                    </ul>
+                    <p>Requests can be sent to: <a href="mailto:eduardo@guerrapixelstudio.com">eduardo@guerrapixelstudio.com</a></p>
+                    <p>Guerra Pixel Studio may request enough information to reasonably verify your request before taking action.</p>
+                    <p>Information held directly by Epic Games, including Epic Games account information, may need to be accessed, corrected, or deleted through Epic Games' own account and privacy services.</p>
+                </section>
+
+                <section class="policy-section" id="platforms">
+                    <h2>7. Other Platforms</h2>
+                    <p>Mawkey The Last Macaw may also be distributed through other platforms such as Steam.</p>
+                    <p>These platforms may separately process information including account identifiers, purchase information, achievement information, device information, or other platform-related data according to their own privacy policies and terms.</p>
+                    <p>Guerra Pixel Studio does not control the independent privacy practices of these platforms.</p>
+                </section>
+
+                <section class="policy-section" id="hosting">
+                    <h2>8. Website Hosting</h2>
+                    <p>The Guerra Pixel Studio website is hosted using third-party infrastructure.</p>
+                    <p>Hosting providers may process limited technical information such as IP addresses, browser information, connection information, and server logs when necessary to deliver, maintain, and secure the website.</p>
+                    <p>The website uses the Silkscreen font through Google Fonts. When your browser requests the font, Google Fonts may receive technical request information such as your IP address and browser details to provide the font. You can review <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>. If you block external font requests in your browser or network settings, the website will use a built-in fallback font.</p>
+                </section>
+
+                <section class="policy-section" id="cookies">
+                    <h2>9. Cookies and Tracking</h2>
+                    <p>Guerra Pixel Studio does not currently use its own advertising cookies or behavioural tracking technologies on this website.</p>
+                    <p>Third-party infrastructure used to host or operate the website may process limited technical information necessary to provide its services.</p>
+                </section>
+
+                <section class="policy-section" id="children">
+                    <h2>10. Children's Privacy</h2>
+                    <p>Guerra Pixel Studio does not knowingly collect personal information directly from children through this website.</p>
+                    <p>Where Epic Games or another platform provides account or platform services, that platform's respective privacy, parental control, and age-related policies apply to information processed through those services.</p>
+                </section>
+
+                <section class="policy-section" id="security">
+                    <h2>11. Security</h2>
+                    <p>Guerra Pixel Studio takes reasonable measures to limit access to personal information and to use information only for the purposes described in this Privacy Policy.</p>
+                    <p>However, no internet-based service or method of electronic storage can guarantee absolute security.</p>
+                </section>
+
+                <section class="policy-section" id="changes">
+                    <h2>12. Changes to This Privacy Policy</h2>
+                    <p>This Privacy Policy may be updated when our games, website, platform integrations, services, or legal requirements change.</p>
+                    <p>The latest version will always be available at:</p>
+                    <p><a href="https://guerrapixelstudio.com/privacy/">https://guerrapixelstudio.com/privacy/</a></p>
+                </section>
+
+                <section class="policy-section" id="contact">
+                    <h2>13. Contact</h2>
+                    <p>If you have questions, concerns, or requests regarding this Privacy Policy, you can contact:</p>
+                    <p>
+                        <strong>Guerra Pixel Studio</strong><br>
+                        Email: <a href="mailto:eduardo@guerrapixelstudio.com">eduardo@guerrapixelstudio.com</a><br>
+                        Website: <a href="https://guerrapixelstudio.com">https://guerrapixelstudio.com</a>
+                    </p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="policy-footer">
+        <span>© 2026 Guerra Pixel Studio</span>
+        <a href="/">Back to the studio website</a>
     </footer>
 
-</main>
+    <script>
+        document.querySelectorAll('.contents a').forEach(link => {
+            link.addEventListener('click', () => {
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) target.focus({ preventScroll: true });
+            });
+        });
 
+        document.querySelectorAll('.policy-section').forEach(section => {
+            section.setAttribute('tabindex', '-1');
+        });
+    </script>
 </body>
 </html>
